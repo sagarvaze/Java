@@ -6,6 +6,13 @@ public class ArrayFunctions {
         return -1;
     }
 
+    public static int linearSearch(String[] data, String target) {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i].equals(target)) return i;
+        }
+        return -1;
+    }
+
     public static int sum(int[] data)
     {
         int sum = 0;
@@ -47,5 +54,8 @@ public class ArrayFunctions {
         System.out.println("Max: " + max(data));
         System.out.println("Min: " + min(data));
         display(data);
+
+        String[] testStrings = {"ABC", "abc", "xyz", "XYZ"};
+        System.out.println("Search for XYZ: " + linearSearch(testStrings,"XYZ"));
     }
 }

@@ -32,8 +32,45 @@ public class StringFunctions {
         }
         return count;
     }
+
+    public static String acronym(String phrase) {
+        StringBuilder result = new StringBuilder();
+        for (String token : phrase.split("\\s+")) {
+            result.append(token.toUpperCase().charAt(0));
+        }
+        return result.toString();
+    }
+
+    public static int countWord(String s, String target) {
+        int count = 0;
+        for (String token : s.split("\\s+")) {
+            if (token.equals(target)) count++;
+        }
+        return count;
+    }
+    
+    public static int countWordIgnoreCase(String s, String target) {
+        int count = 0;
+        for (String token : s.split("\\s+")) {
+            if (token.equalsIgnoreCase(target)) count++;
+        }
+        return count;
+    }
+
+    public static String reverse(String s) {
+        StringBuilder result = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) result.append(s.charAt(i));
+        return result.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println("Number of this's: " + 
             count2("this and this and that and this", "this"));
+        System.out.println("Acronym of 'Sagar Rajiv Vaze': " + acronym("Sagar Rajiv Vaze"));
+        System.out.println("Number of this's: " + 
+            countWord("this and this and that and This", "this"));
+        System.out.println("Number of this's: " + 
+            countWordIgnoreCase("this and this and that and This", "this"));
+        System.out.println("Reverse : " + reverse("Reverse"));
     }
 }
