@@ -20,7 +20,7 @@ public class StringFunctions {
     }
 
     public static int count2(String s, String target) {
-        int prevIdx = -1, count = 0, offset = 0;
+        int prevIdx = -1, count = 0,offset = 0;
         int idx = s.indexOf(target);
         while (idx != -1) {
             if (idx != prevIdx) {
@@ -34,6 +34,6 @@ public class StringFunctions {
     }
     public static void main(String[] args) {
         System.out.println("Number of this's: " + 
-            count2("this and This and that and this", "this"));
+            count2("this and this and that and this", "this"));
     }
 }
