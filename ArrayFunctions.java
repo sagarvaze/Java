@@ -83,6 +83,17 @@ public class ArrayFunctions {
         }
     }
 
+    public static int binarySearch(int[] data, int target) {
+        int left = 0;
+        int right = data.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (target == data[mid]) return mid;
+            else if (target > data[mid]) left = mid + 1;
+            else right = mid - 1;
+        }
+        return -1;
+    }
     public static void main (String[] args) {
         int[] data = {3, 14, 7, 22, 45, 12, 19, 42, 6};
         for (int elem : data) {
@@ -98,25 +109,28 @@ public class ArrayFunctions {
         insertionSort(data);
         System.out.print("Sorted array: ");
         display(data);
-        String[] testStrings = {"ABC", "abc", "xyz", "XYZ"};
-        System.out.println("Search for XYZ: " + linearSearch(testStrings,"XYZ"));
+        for (int elem : data) {
+            System.out.println("Seaarch for " + elem + ": " + binarySearch(data, elem));
+        }
+        // String[] testStrings = {"ABC", "abc", "xyz", "XYZ"};
+        // System.out.println("Search for XYZ: " + linearSearch(testStrings,"XYZ"));
 
-        int[] dataInsertionSort = new int[100000];
-        int[] dataSelectionSort = new int[100000];
-        randomFill(dataInsertionSort);
-        for (int i = 0; i < dataInsertionSort.length; i++) dataSelectionSort[i] = dataInsertionSort[i];
+        // int[] dataInsertionSort = new int[100000];
+        // int[] dataSelectionSort = new int[100000];
+        // randomFill(dataInsertionSort);
+        // for (int i = 0; i < dataInsertionSort.length; i++) dataSelectionSort[i] = dataInsertionSort[i];
 
-        // display(data2);
-        long start = System.currentTimeMillis();
-        insertionSort(dataInsertionSort);
-        long elapsed = System.currentTimeMillis() - start;
-        // display(data2);
-        System.out.println(elapsed + "ms");
+        // // display(data2);
+        // long start = System.currentTimeMillis();
+        // insertionSort(dataInsertionSort);
+        // long elapsed = System.currentTimeMillis() - start;
+        // // display(data2);
+        // System.out.println(elapsed + "ms");
 
-        start = System.currentTimeMillis();
-        selectionSort(dataSelectionSort);
-        elapsed = System.currentTimeMillis() - start;
-        // display(data2);
-        System.out.println(elapsed + "ms");
+        // start = System.currentTimeMillis();
+        // selectionSort(dataSelectionSort);
+        // elapsed = System.currentTimeMillis() - start;
+        // // display(data2);
+        // System.out.println(elapsed + "ms");
     }
 }
