@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class ArrayFunctions {
     public static int linearSearch(int[] data, int target) {
         for (int i = 0; i < data.length; i++) {
@@ -42,6 +44,45 @@ public class ArrayFunctions {
         System.out.println();
     }
 
+    public static void insertionSort(int[] data) {
+        for (int i = 1; i < data.length; i++) {
+            int key = data[i];
+            int j = i - 1;
+            while(j >= 0 && key < data[j]) {
+                data[j+1] = data[j];
+                j--;
+            }
+            data[j + 1] = key;
+        }
+    }
+
+    public static void selectionSort(int[] data) {
+        for (int i = 0; i < data.length - 1; i++) {
+            int minIdx = i;
+            for (int j = i + 1; j < data.length; j++) {
+                if (data[minIdx] > data[j]) {
+                    minIdx = j;
+                }
+            }
+            int temp = data[minIdx];
+            data[minIdx] = data[i];
+            data[i] = temp;
+        }
+    }
+    public static void randomFill(int[] data, int max) {
+        Random gen = new Random();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = gen.nextInt(max);
+        }
+    }
+
+    public static void randomFill(int[] data) {
+        Random gen = new Random();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = gen.nextInt();
+        }
+    }
+
     public static void main (String[] args) {
         int[] data = {3, 14, 7, 22, 45, 12, 19, 42, 6};
         for (int elem : data) {
@@ -54,8 +95,28 @@ public class ArrayFunctions {
         System.out.println("Max: " + max(data));
         System.out.println("Min: " + min(data));
         display(data);
-
+        insertionSort(data);
+        System.out.print("Sorted array: ");
+        display(data);
         String[] testStrings = {"ABC", "abc", "xyz", "XYZ"};
         System.out.println("Search for XYZ: " + linearSearch(testStrings,"XYZ"));
+
+        int[] dataInsertionSort = new int[100000];
+        int[] dataSelectionSort = new int[100000];
+        randomFill(dataInsertionSort);
+        for (int i = 0; i < dataInsertionSort.length; i++) dataSelectionSort[i] = dataInsertionSort[i];
+
+        // display(data2);
+        long start = System.currentTimeMillis();
+        insertionSort(dataInsertionSort);
+        long elapsed = System.currentTimeMillis() - start;
+        // display(data2);
+        System.out.println(elapsed + "ms");
+
+        start = System.currentTimeMillis();
+        selectionSort(dataSelectionSort);
+        elapsed = System.currentTimeMillis() - start;
+        // display(data2);
+        System.out.println(elapsed + "ms");
     }
 }
