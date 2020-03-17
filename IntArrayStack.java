@@ -48,10 +48,13 @@ public class IntArrayStack implements IntStack {
     public static void main(String[] args) {
         IntStack s = new IntArrayStack();
         System.out.println("Empty: " + s.isEmpty());
-        for (int i = 0; i < 500; i++) {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 50000000; i++) {
             s.push(i);
-            System.out.println("Size: " + s.size() + " Top: " + s.peek());
+            // System.out.println("Size: " + s.size() + " Top: " + s.peek());
         }
+        long elapsed = System.currentTimeMillis() - start;
+        System.out.println(elapsed + "ms");
         System.out.println("Empty: " + s.isEmpty());
     }
 }
