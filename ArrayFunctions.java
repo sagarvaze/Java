@@ -94,7 +94,7 @@ public class ArrayFunctions {
         }
         return -1;
     }
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         int[] data = {3, 14, 7, 22, 45, 12, 19, 42, 6};
         for (int elem : data) {
             System.out.println("Seaarch for " + elem + ": " + linearSearch(data, elem));
