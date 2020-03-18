@@ -27,7 +27,7 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     public void push(E item) {
-        if (top == data.length) resize(2 * data.length);
+        if (top == data.length - 1) resize(2 * data.length);
         data[++top] = item;
     }
 
@@ -47,7 +47,7 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     public static void main(String[] args) {
-        Stack<Integer> s = new ArrayStack();
+        Stack<Integer> s = new ArrayStack<>();
         System.out.println("Empty: " + s.isEmpty());
         long start = System.currentTimeMillis();
         for (int i = 0; i < 50000000; i++) {

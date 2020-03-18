@@ -20,7 +20,7 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     public void push(E data) {
-        top = new Node(data, top);
+        top = new Node<E>(data, top);
         size++;
     }
 
