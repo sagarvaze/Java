@@ -59,6 +59,7 @@ public class LinkedQueue<E> implements Queue<E> {
     }
 
     public String toString() {
+        if (size == 0) throw new NoSuchElementException();
         StringBuilder s = new StringBuilder();
         Node<E> iter = front;
         for (int i = 0; i < size; i++) {
