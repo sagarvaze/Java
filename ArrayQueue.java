@@ -1,10 +1,10 @@
 import java.util.NoSuchElementException;
 
 public class ArrayQueue<E> implements Queue<E> {
-    private E[] data;
+    protected E[] data;
     private int front;
     private int rear;
-    private int size;
+    protected int size;
     private static final int DEFAULT_CAPACITY = 10;
     
     @SuppressWarnings("unchecked")

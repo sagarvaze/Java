@@ -1,8 +1,8 @@
 import java.util.EmptyStackException;
 
 public class ArrayStack<E> implements Stack<E> {
-    private E[] data;
-    private int top = -1;
+    protected E[] data;
+    protected int top = -1;
     private static final int DEFAULT_CAPACITY = 10;
 
     @SuppressWarnings("unchecked")
