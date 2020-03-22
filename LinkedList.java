@@ -110,23 +110,27 @@ public class LinkedList<E> implements List<E> {
         List<Integer> s = new LinkedList<>();
         System.out.println("Empty: " + s.isEmpty());
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5000; i++) {
             s.add(i);
-            System.out.println("Size: " + s.size() + " Top: " + s.get(i));
-            System.out.println(s.toString());
+            s.get(i);
+            // System.out.println("Size: " + s.size() + " Top: " + s.get(i));
+            // System.out.println(s.toString());
         }
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Size: " + s.size() + " Top: " + s.removeAt(1));
-            System.out.println(s.toString());
+        for (int i = 0; i < 3000; i++) {
+            s.removeAt(0);
+            // System.out.println("Size: " + s.size() + " Top: " + s.removeAt(1));
+            // System.out.println(s.toString());
         }
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 14000; i++) {
             s.add(1, i);
-            System.out.println("Size: " + s.size() + " Top: " + s.get(i));
-            System.out.println(s.toString());
+            s.get(i);
+            // System.out.println("Size: " + s.size() + " Top: " + s.get(i));
+            // System.out.println(s.toString());
         }
-        for (int i = 4; i < 6; i++) {
-            System.out.println(s.removeAt(i));
-            System.out.println(s.toString());
+        for (int i = 4; i < 6000; i++) {
+            s.removeAt(i);
+            // System.out.println(s.removeAt(i));
+            // System.out.println(s.toString());
         }
         long elapsed = System.currentTimeMillis() - start;
         System.out.println(elapsed + "ms");
