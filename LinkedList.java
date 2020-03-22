@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class LinkedList<E> implements List<E> {
     private Node<E> head;
     private int size;
@@ -21,6 +24,29 @@ public class LinkedList<E> implements List<E> {
     public LinkedList() {
         head = new Node<E>();
         size = 0;
+    }
+
+    public Iterator<E> iterator() {
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<E> {
+        private Node<E> next = head.next;
+
+        public boolean hasNext() {
+            return next != null;
+        }
+
+        public E next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            E result = next.data;
+            next = next.next;
+            return result;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 
     public E removeAt(int index) {
@@ -121,6 +147,7 @@ public class LinkedList<E> implements List<E> {
             // System.out.println("Size: " + s.size() + " Top: " + s.removeAt(1));
             // System.out.println(s.toString());
         }
+        for (Integer item : s) System.out.println(item);
         for (int i = 0; i < 14000; i++) {
             s.add(1, i);
             s.get(i);

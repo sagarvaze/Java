@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ArrayList<E> implements List<E> {
     protected E[] data;
     protected int size;
@@ -11,6 +14,27 @@ public class ArrayList<E> implements List<E> {
 
     public ArrayList() {
         this(DEFAULT_CAPACITY);
+    }
+    
+    public Iterator<E> iterator() {
+        return new ArrayListIterator();
+    }
+
+    private class ArrayListIterator implements Iterator<E> {
+        private int next = 0;
+
+        public boolean hasNext() {
+            return next < size;
+        }
+
+        public E next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            return data[next++];
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 
     public void add(E item) {
@@ -95,6 +119,7 @@ public class ArrayList<E> implements List<E> {
             // System.out.println("Size: " + s.size() + " Top: " + s.removeAt(0));
             // System.out.println(s.toString());
         }
+        for (Integer item : s) System.out.println(item);
         for (int i = 0; i < 14000; i++) {
             s.add(1, i);
             s.get(i);

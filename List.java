@@ -1,4 +1,4 @@
-public interface List<E> {
+public interface List<E> extends Iterable<E> {
     void add(E item);
     void add(int index, E item);
     E get(int index);
