@@ -14,10 +14,25 @@ public abstract class Heap<E extends Comparable<? super E>> implements PriorityQ
         this(DEFAULT_CAPACITY);
     }
 
+    // Buildheap algorithm
+    @SuppressWarnings("unchecked")
+    public Heap(E[] items) {
+        if (items.length == 0) data = (E[]) new Comparable[DEFAULT_CAPACITY];
+        data = items;
+        size = items.length;
+        int last = size - 1;
+        for (int p = parent(last); p >= 0; p--) {
+            heapifyDown(p);
+        }
+    }
+
     public void add(E item) {
         if (size == data.length) resize(2 * data.length);
         data[size++] = item;
-        int idx = size - 1;
+        heapifyUp(size - 1);
+    }
+
+    protected void heapifyUp(int idx) {
         while (isValid(parent(idx)) && !isHigher(parent(idx), idx)) {
             swap(idx, parent(idx));
             idx = parent(idx);
@@ -29,15 +44,19 @@ public abstract class Heap<E extends Comparable<? super E>> implements PriorityQ
         E result = data[0];
         data[0] = data[size - 1];
         data[--size] = null;
-        int largest = 0, idx = 0;
+        heapifyDown(0); 
+        if (size >= 10 && size == data.length / 2) resize(data.length / 2);
+        return result;
+    }
+
+    protected void heapifyDown(int idx) {
+        int largest = idx;
         while(isValid(left(idx)) && !isHigher(idx, left(idx)) || isValid(right(idx)) && !isHigher(idx, right(idx))) {
             if (isValid(left(idx)) && !isHigher(largest, left(idx))) largest = left(idx);
             if (isValid(right(idx)) && !isHigher(largest, right(idx))) largest = right(idx);
             if (idx != largest) swap(idx, largest);
             idx = largest;
         }
-        if (size >= 10 && size == data.length / 2) resize(data.length / 2);
-        return result;
     }
 
     public E peek() {
