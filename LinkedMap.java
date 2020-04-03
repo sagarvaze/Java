@@ -1,17 +1,18 @@
 public class LinkedMap<K, V> implements Map<K, V> {
-    private class KeyValuePair<K, V> {
-        protected K key;
-        protected V value;
+    private class KeyValuePair<T, U> {
+        protected T key;
+        protected U value;
 
-        public KeyValuePair(K key, V value) {
+        public KeyValuePair(T key, U value) {
             this.key = key;
             this.value = value;
         }
 
+        @SuppressWarnings("unchecked")
         public boolean equals(Object test) {
             if (test == this) return true;
             if (!(test instanceof KeyValuePair)) return false;
-            KeyValuePair<K, V> testKeyValuePair = (KeyValuePair<K, V>) test;
+            KeyValuePair<T, U> testKeyValuePair = (KeyValuePair<T, U>) test;
             return key.equals(testKeyValuePair.key);
         } 
 
